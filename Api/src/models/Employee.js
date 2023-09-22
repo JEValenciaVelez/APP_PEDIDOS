@@ -11,30 +11,30 @@ module.exports = (sequelize) => {
     nombre: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   notEmpty: true, // No debe estar vacío
-      //   len: [2, 255], // Longitud entre 2 y 255 caracteres
-      // },
+      validate: {
+        notEmpty: true, // No debe estar vacío
+        len: [2, 255], // Longitud entre 2 y 255 caracteres
+      },
     },
     apellidos: {
       type: DataTypes.STRING,
       allowNull: false,
-      // validate: {
-      //   notEmpty: true, // No debe estar vacío
-      //   len: [2, 255], // Longitud entre 2 y 255 caracteres
-      // },
+      validate: {
+        notEmpty: true, // No debe estar vacío
+        len: [2, 255], // Longitud entre 2 y 255 caracteres
+      },
     },
     cedula: {
       type: DataTypes.STRING,
       allowNull: false,
-      // unique: {
-      //   name: 'cedula',
-      //   msg: 'La cédula ya está en uso', // Mensaje personalizado para la restricción unique
-      // },
-      // validate: {
-      //   notEmpty: true, // No debe estar vacío
-      //   is: /^[0-9]{11}$/i, // Debe ser un número de cédula válido (ajusta la expresión regular según tu país)
-      // },
+      unique: {
+        name: 'cedula',
+        msg: 'La cédula ya está en uso', // Mensaje personalizado para la restricción unique
+      },
+      validate: {
+        notEmpty: true, // No debe estar vacío
+        is: /^[0-9]{11}$/i, // Debe ser un número de cédula válido (ajusta la expresión regular según tu país)
+      },
     },
     direccion: {
       type: DataTypes.STRING,
