@@ -11,21 +11,17 @@ module.exports = (sequelize) => {
             primaryKey: true,
           },
         
-        pedidoId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        validate: {
-            notNull: {
-            args: true,
-            msg: 'El campo pedidoId no puede ser nulo.',
+          pedidoId: {
+            type: DataTypes.UUID, // Asegúrate de que el tipo de datos coincida con el de la clave primaria de "order"
+            allowNull: false,
+            validate: {
+              notNull: {
+                args: true,
+                msg: 'El campo pedidoId no puede ser nulo.',
+              },
             },
-            isInt: {
-            args: true,
-            msg: 'El campo pedidoId debe ser un número entero válido.',
-            },
-         },
-        },
-
+          },
+          
         nombreProducto: {
         type: DataTypes.STRING,
         allowNull: false,

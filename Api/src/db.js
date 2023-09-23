@@ -35,7 +35,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Employee, EmployeeType } = sequelize.models;
+const { Employee, EmployeeType, Order, OrderDetail } = sequelize.models;
 // console.log(`employe: ${Employee}, type employe: ${EmployeeType}`)
 
 // Aca vendrian las relaciones
@@ -55,6 +55,19 @@ EmployeeType.belongsToMany(Employee, {
   foreignKey: "employeeTypeId",
   as: "employees",
 });
+
+// En el modelo "order"
+Order.hasMany(OrderDetail, {
+  foreignKey: 'pedidoId', // Nombre de la columna de clave foránea en "orderDetail"
+  as: 'orderDetails', // Alias para la relación (puedes elegir cualquier nombre)
+});
+
+// En el modelo "orderDetail"
+OrderDetail.belongsTo(Order, {
+  foreignKey: 'pedidoId', // Nombre de la columna de clave foránea en "orderDetail"
+  as: 'order', // Alias para la relación (puedes elegir cualquier nombre)
+});
+
 
 
 // console.log(sequelize.models);
