@@ -9,6 +9,7 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
     },
+
     numeroDeOrden: {
         type: DataTypes.INTEGER, 
         allowNull: false,
@@ -23,6 +24,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
     fechaDeRegistro: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -37,6 +39,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       totalPrecio: {
         type: DataTypes.FLOAT, 
         allowNull: false,
@@ -47,6 +50,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       totalIva: {
         type: DataTypes.FLOAT, // Cambia al tipo de datos apropiado si no es FLOAT
         allowNull: false,
@@ -57,6 +61,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       Departamento: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -67,6 +72,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       ciudad: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -77,6 +83,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       barrio: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -87,6 +94,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       direccionDeEntrega: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -97,6 +105,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       cliente: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -107,6 +116,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       empleado: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -117,6 +127,7 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       entregador: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -127,9 +138,11 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       observacion: {
         type: DataTypes.STRING,
         allowNull: true, // Cambia a "false" si la observación es obligatoria
       },
   });
+  
 };
