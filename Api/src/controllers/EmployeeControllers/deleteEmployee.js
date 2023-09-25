@@ -21,7 +21,7 @@ const deleteEmployees = async (req, res) => {
             return res.status(404).send('No se encontraron empleados con la cédula proporcionada');
         }
 
-        // Eliminar los empleados encontrados
+        // Eliminar el empleado
         await Employee.destroy({
             where: {
                 cedula: cedula
@@ -29,7 +29,7 @@ const deleteEmployees = async (req, res) => {
         });
 
         return res.status(200).json({ message: 'Empleado eliminado con éxito' });
-        
+
     } catch (error) {
         console.error(error);
         return res.status(500).send('Error al eliminar empleados');
