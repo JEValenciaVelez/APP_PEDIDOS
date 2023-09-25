@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
         unique: true, // Debe ser único
         validate: {
         notEmpty: true, // No debe estar vacío
-        is: /^[0-9]{11}$/i, // Debe ser un número de cédula válido (ajusta la expresión regular según tu país)
+        // is: /^[0-9]{11}$/i, // Debe ser un número de cédula válido (ajusta la expresión regular según tu país)
         },
     },
     direccion: {
