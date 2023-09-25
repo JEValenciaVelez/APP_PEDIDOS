@@ -1,13 +1,12 @@
-//en el archivo db.js se exporta sequelize.models como propiedad cuy valor es un objeto con los modelos(tablas) 
-const { Usuario } = require('../../db')
+const { Employee } = require('../../db')
 
-const postUser = async (req, res) => {
+const postEmployee = async (req, res) => {
     
     console.log(req.body)
 
     try {
         
-        const newUser = await Usuario.create(req.body);
+        const newUser = await Employee.create(req.body);
         return res.status(201).json(newUser);
 
     } catch (error) {
@@ -17,4 +16,4 @@ const postUser = async (req, res) => {
     }
 };
 
-module.exports = postUser;
+module.exports = postEmployee

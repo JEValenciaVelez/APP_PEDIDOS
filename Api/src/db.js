@@ -35,7 +35,13 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Employee, EmployeeType, Order, OrderDetail } = sequelize.models;
+const { 
+  Employee, 
+  EmployeeType, 
+  Order, 
+  OrderDetail, 
+  Usuario,  
+} = sequelize.models;
 // console.log(`employe: ${Employee}, type employe: ${EmployeeType}`)
 
 // Aca vendrian las relaciones
@@ -67,6 +73,13 @@ OrderDetail.belongsTo(Order, {
   foreignKey: 'pedidoId', // Nombre de la columna de clave foránea en "orderDetail"
   as: 'order', // Alias para la relación (puedes elegir cualquier nombre)
 });
+
+Usuario.belongsTo(Employee, {
+  foreignKey: 'usuario', // Nombre de la columna de clave foránea en Usuario
+  targetKey: 'cedula', // Nombre de la columna de destino en Employee
+  as: 'employee', // Alias de la relación (opcional)
+});
+
 
 
 
