@@ -56,14 +56,14 @@ module.exports = (sequelize) => {
           msg: 'El campo contraseña no puede ser nulo.',
         },
         len: {
-          args: [8, 20], 
+          args: [8, 100], 
           msg: 'El campo contraseña debe tener al menos 8 caracteres.',
         },
       },
 
       set(value) {
         // Función de hash para encriptar la contraseña antes de guardarla en la base de datos
-        const hashedPassword = bcrypt.hashSync(value, 10); // 10 es el número de rondas de hash
+        const hashedPassword = bcrypt.hashSync(value, 5); // 10 es el número de rondas de hash
         this.setDataValue('contraseña', hashedPassword);
       },
       

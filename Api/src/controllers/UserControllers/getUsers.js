@@ -1,9 +1,10 @@
+const { Usuario } = require('../../db')
 
 
-
-const getUsers =  (req, res) => {
+const getUsers =  async (req, res) => {
 
     try{
+        const Users = await Usuario.findAll({})
         res.status(200).send('get users works')
     }catch(error){
         console.log(error)

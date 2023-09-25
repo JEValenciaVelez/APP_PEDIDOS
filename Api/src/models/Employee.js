@@ -35,10 +35,10 @@ module.exports = (sequelize) => {
         name: 'cedula',
         msg: 'La cédula ya está en uso', // Mensaje personalizado para la restricción unique
       },
-      validate: {
-        notEmpty: true, // No debe estar vacío
-        is: /^[0-9]{11}$/i, // Debe ser un número de cédula válido (ajusta la expresión regular según tu país)
-      },
+      // validate: {
+      //   notEmpty: true, // No debe estar vacío
+      //   is: /^[0-9]{11}$/i, // Debe ser un número de cédula válido (ajusta la expresión regular según tu país)
+      // },
     },
 
     direccion: {
