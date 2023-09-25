@@ -26,12 +26,12 @@ const updateUser = async (req, res) => {
         }
 
         // Actualizar los campos del empleado con los valores proporcionados
-        if (empleado) userToUpdateToUpdate.empleado = empleado;
-        if (contraseña) userToUpdateToUpdate.contraseña = contraseña;
-        if (fechaRegistro) userToUpdateToUpdate.fechaRegistro = fechaRegistro;
+        if (empleado) userToUpdate.empleado = empleado;
+        if (contraseña) userToUpdate.contraseña = contraseña;
+        if (fechaRegistro) userToUpdate.fechaRegistro = fechaRegistro;
     
         // Guardar los cambios en la base de datos
-        await userToUpdateToUpdate.save();
+        await userToUpdate.save();
 
         return res.status(200).json({ message: 'usuario actualizado con éxito' });
 
