@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
             msg: 'El campo nombreProducto no puede ser nulo.',
             },
             len: {
-            args: [1, 255], // Ajusta los límites de longitud según tus necesidades
+            args: [1, 255], 
             msg: 'El campo nombreProducto debe tener entre 1 y 255 caracteres.',
             },
          },
@@ -39,10 +39,10 @@ module.exports = (sequelize) => {
 
         descripcionProducto: {
         type: DataTypes.STRING,
-        allowNull: true, // Cambia a "false" si la descripción es obligatoria
+        allowNull: true, 
         validate: {
             len: {
-            args: [0, 1000], // Ajusta los límites de longitud según tus necesidades
+            args: [0, 1000], 
             msg: 'La descripción del producto no puede exceder los 1000 caracteres.',
             },
          },
@@ -91,7 +91,7 @@ module.exports = (sequelize) => {
                 msg: 'El campo cantidad debe ser un número entero válido.',
               },
               min: {
-                args: 1, // Define el valor mínimo según tus necesidades
+                args: 1, 
                 msg: 'El campo cantidad debe ser al menos 1.',
               },
             },
