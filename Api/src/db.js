@@ -48,19 +48,22 @@ const {
 // Product.hasMany(Reviews);
 
 // Define las relaciones
+// En el modelo "Employee"
+// En el modelo "Employee"
 Employee.belongsToMany(EmployeeType, {
-  through: "Employee_TypeEmployee",
-  timestamps: false,
-  foreignKey: "employeeId",
-  as: "employeeTypes",
+  through: 'EmployeeEmployeeType', // Nombre de la tabla intermedia
+  foreignKey: 'employeeId', // Clave foránea que hace referencia al ID de Employee
+  otherKey: 'employeeTypeId', // Clave foránea que hace referencia al ID de EmployeeType
 });
 
+// En el modelo "EmployeeType"
 EmployeeType.belongsToMany(Employee, {
-  through: "Employee_TypeEmployee",
-  timestamps: false,
-  foreignKey: "employeeTypeId",
-  as: "employees",
+  through: 'EmployeeEmployeeType', // Nombre de la tabla intermedia
+  foreignKey: 'employeeTypeId', // Clave foránea que hace referencia al ID de EmployeeType
+  otherKey: 'employeeId', // Clave foránea que hace referencia al ID de Employee
 });
+
+
 
 // En el modelo "order"
 Order.hasMany(OrderDetail, {
