@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
-// console.log(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/orders_admin`)
+
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/orders_admin`, {
   logging: false, // set to console.log to see the raw SQL queries
@@ -48,8 +48,7 @@ const {
 // Product.hasMany(Reviews);
 
 // Define las relaciones
-// En el modelo "Employee"
-// En el modelo "Employee"
+
 Employee.belongsToMany(EmployeeType, {
   through: 'EmployeeEmployeeType', // Nombre de la tabla intermedia
   foreignKey: 'employeeId', // Clave foránea que hace referencia al ID de Employee
@@ -62,7 +61,6 @@ EmployeeType.belongsToMany(Employee, {
   foreignKey: 'employeeTypeId', // Clave foránea que hace referencia al ID de EmployeeType
   otherKey: 'employeeId', // Clave foránea que hace referencia al ID de Employee
 });
-
 
 
 // En el modelo "order"
@@ -87,7 +85,6 @@ Usuario.belongsTo(Employee, {
 
 
 // console.log(sequelize.models);
-
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

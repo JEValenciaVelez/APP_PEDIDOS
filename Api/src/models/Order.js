@@ -11,18 +11,19 @@ module.exports = (sequelize) => {
     },
 
     numeroDeOrden: {
-        type: DataTypes.INTEGER, 
+        type: DataTypes.UUID, 
+        defaultValue: DataTypes.UUIDV1,
         allowNull: false,
-        validate: {
-          notNull: {
-            args: true,
-            msg: 'El campo numeroDeOrden no puede ser nulo.',
-          },
-          isInt: {
-            args: true,
-            msg: 'El campo numeroDeOrden debe ser un número entero válido.',
-          },
-        },
+        // validate: {
+        //   notNull: {
+        //     args: true,
+        //     msg: 'El campo numeroDeOrden no puede ser nulo.',
+        //   },
+        //   isInt: {
+        //     args: true,
+        //     msg: 'El campo numeroDeOrden debe ser un número entero válido.',
+        //   },
+        // },
       },
 
     fechaDeRegistro: {
@@ -52,7 +53,7 @@ module.exports = (sequelize) => {
       },
 
       totalIva: {
-        type: DataTypes.FLOAT, // Cambia al tipo de datos apropiado si no es FLOAT
+        type: DataTypes.FLOAT, 
         allowNull: false,
         validate: {
           isFloat: {
@@ -141,7 +142,7 @@ module.exports = (sequelize) => {
 
       observacion: {
         type: DataTypes.STRING,
-        allowNull: true, // Cambia a "false" si la observación es obligatoria
+        allowNull: true, 
       },
   });
   
