@@ -61,11 +61,11 @@ module.exports = (sequelize) => {
         },
       },
 
-      set(value) {
-        // Función de hash para encriptar la contraseña antes de guardarla en la base de datos
-        const hashedPassword = bcrypt.hashSync(value, 5); // 10 es el número de rondas de hash
-        this.setDataValue('contraseña', hashedPassword);
-      },
+      // set(value) {
+      //   // Función de hash para encriptar la contraseña antes de guardarla en la base de datos
+      //   const hashedPassword = bcrypt.hashSync(value, 5); // 10 es el número de rondas de hash
+      //   this.setDataValue('contraseña', hashedPassword);
+      // },
       
     },
 
