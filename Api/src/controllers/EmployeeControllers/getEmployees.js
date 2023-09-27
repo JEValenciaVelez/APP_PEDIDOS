@@ -19,7 +19,7 @@ const getEmployees =  async (req, res) => {
                 return res.status(404).send(`No hay empleado con la cédula ${cedula}`);
             }
 
-            return res.status(200).json({employee})
+            return res.status(200).json(employee)
 
         }else{
 
@@ -27,7 +27,7 @@ const getEmployees =  async (req, res) => {
             if(employees.length == 0){
                 return res.status(404).send('No se encontraron empleados')
             }
-            return res.status(200).json({employees})
+            return res.status(200).json(employees)
         }
 
     }catch(error){
