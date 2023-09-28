@@ -1,8 +1,9 @@
-import { GET_EMPLOYEE, GET_EMPLOYEES, GET_USER, GET_USERS } from "./types";
+import { GET_EMPLOYEE, GET_EMPLOYEES, GET_USER, GET_USERS, GET_USER_LOGIN } from "./types";
 
 const initialState = {
     users: [],
     user:{},
+    login:'',
     employee:{},
     employees:[]
 };
@@ -33,6 +34,12 @@ export function rootReducer(state= initialState , {type, payload}){
             return {
                 ...state,
                 employees: [...state.employees, ...payload]
+            }
+
+        case GET_USER_LOGIN:
+            return {
+                ...state,
+                login: payload
             }
 
         default:
