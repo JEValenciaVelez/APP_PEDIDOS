@@ -10,17 +10,19 @@ const Login = () => {
 
   const userLogin = async (user, password) => {
     try {
-      const params = {
+
+      const reqBody = {
         usuario: user,
         contraseña: password
-      };
+      }
 
-      const response = await axiosInstance.get('/login', { params })
-      const data = response.data;
-      return data;
+
+      const response = await axiosInstance.post('/login', reqBody)
+      const data = response.data
+      return data
     } catch (error) {
-      console.error(error.message);
-      throw error;
+      console.error(error.message)
+      throw error
     }
   };
 
