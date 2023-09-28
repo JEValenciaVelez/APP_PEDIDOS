@@ -2,34 +2,33 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const Clients = () => {
+const Product = () => {
 
-  const [clientData, setData] = useState({
-    nombre: '',
-    apellidos: '',
-    cedula: '',
-    direccion: '',
-    departamento: '',
-    municipio: '',
-    barrio: '',
-    activo: true,
-    fechaDeNacimiento: '',
-    telefono: ''
+  const [Data, setData] = useState({
+    descripcion: '',
+    codigo: '',
+    marca: '',
+    categoria: '',
+    cantidadDisponible: 0,
+    habilitado: true,
+    iva: 0.0,
+    cantidadVentas: 0,
+    precio: 0.0,
   });
 
  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setData({ ...clientData, [name]: value });
+    setData({ ...Data, [name]: value });
   };
 
   const sendClientData = async () => {
 
-    console.log('data q se despacha al servidor',clientData)
+    console.log('data q se despacha al servidor', Data)
 
     try {
-      const response = await axios.post('http://localhost:3001/client', clientData);
+      const response = await axios.post('http://localhost:3001/product', Data);
 
       if (response.status === 201) {
         console.log('Cliente creado exitosamente:', response.data);
@@ -42,94 +41,84 @@ const Clients = () => {
 
   return (
     <div className="container mx-auto px-4 py-4">
-      <h2 className="text-2xl font-semibold mb-4">Crear Cliente</h2>
+      <h2 className="text-2xl font-semibold mb-4">Crear Producto</h2>
       <form>
         <div className="mb-4">
-          <label className="block text-gray-700">Nombre:</label>
+          <label className="block text-gray-700">Descripcion:</label>
           <input
             type="text"
-            name="nombre"
-            value={clientData.nombre}
+            name="descripcion"
+            value={Data.descripcion}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Apellidos:</label>
+          <label className="block text-gray-700">Codigo:</label>
           <input
             type="text"
-            name="apellidos"
-            value={clientData.apellidos}
+            name="codigo"
+            value={Data.codigo}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Cedula: </label>
+          <label className="block text-gray-700">Marca: </label>
           <input
             type="text"
-            name="cedula"
-            value={clientData.cedula}
+            name="marca"
+            value={Data.marca}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Direccion: </label>
+          <label className="block text-gray-700"> Categoria: </label>
           <input
             type="text"
-            name="direccion"
-            value={clientData.direccion}
+            name="categoria"
+            value={Data.categoria}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Departamento: </label>
+          <label className="block text-gray-700">Cantidad disponible: </label>
           <input
-            type="text"
-            name="departamento"
-            value={clientData.departamento}
+            type="number"
+            name="cantidadDisponible"
+            value={Data.cantidadDisponible}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Municipio: </label>
+          <label className="block text-gray-700">Iva: </label>
           <input
             type="text"
-            name="municipio"
-            value={clientData.municipio}
+            name="iva"
+            value={Data.iva}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Barrio: </label>
+          <label className="block text-gray-700">Cantidad ventas: </label>
           <input
-            type="text"
-            name="barrio"
-            value={clientData.barrio}
+            type="number"
+            name="cantidadVentas"
+            value={Data.cantidadVentas}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Fecha de nacimiento: </label>
+          <label className="block text-gray-700">Precio: </label>
           <input
-            type="text"
-            name="fechaDeNacimiento"
-            value={clientData.fechaDeNacimiento}
-            onChange={handleInputChange}
-            className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
-          />
-        </div>
-        <div className="mb-4">
-          <label className="block text-gray-700">Telefono: </label>
-          <input
-            type="text"
-            name="telefono"
-            value={clientData.telefono}
+            type="number"
+            name="precio"
+            value={Data.precio}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
@@ -140,11 +129,11 @@ const Clients = () => {
           onClick={sendClientData}
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
         >
-          Crear Cliente
+          Crear Producto
         </button>
       </form>
     </div>
   );
 };
 
-export default Clients;
+export default Product;

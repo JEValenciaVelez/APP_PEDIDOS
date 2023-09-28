@@ -12,30 +12,15 @@ const Login = () => {
   const employees = useSelector(state => state.employees)
   const navigate = useNavigate()
 
-
   useEffect(()=>{
     dispatch(getUsers())
   },[dispatch])
 
- 
-
   const filteredUser = users?.filter(user => user.usuario === inputUsername)
-  console.log('usuario filtrado -> ', filteredUser)
-
-
-  // console.log(`empleado del estado global -> ${typeof employees}`)
-
-  // useEffect(()=>{
-  //   dispatch(getEmployees())
-  // },[dispatch])
-
-
-  // console.log(`empleado del estado global -> ${employees}`)
-  
-
+  // console.log('usuario filtrado -> ', filteredUser)  
 
   const handleLogin = () => {
-    console.log(`user: ${inputUsername}, contraseña: ${inputPassword}`)
+    // console.log(`user: ${inputUsername}, contraseña: ${inputPassword}`)
     if(filteredUser.length > 0){
       if (inputUsername === filteredUser[0].usuario && inputPassword === filteredUser[0].contraseña) {
         alert('Inicio de sesión exitoso')
@@ -55,6 +40,7 @@ const Login = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-96">
+        <h1 className="text-2xl font-semibold mb-4 text-center">APP COMPANY</h1>
         <h2 className="text-2xl font-semibold mb-4">Iniciar Sesión</h2>
         <div className="mb-4">
           <label className="block text-gray-700">usuario:</label>
