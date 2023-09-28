@@ -1,86 +1,89 @@
+
 import React, { useState } from 'react';
 import axios from 'axios';
 
 
-const Employees = () => {
+const Orders = () => {
 
-  const [Data, setData] = useState({
-    nombre: '',
-    apellidos: '',
-    cedula: '',
-    direccion: '',
-    departamento: '',
-    municipio: '',
-    barrio: '',
-    tipoEmpleado: '',
-    salario: 0,
-    fechaDeNacimiento: '',
-    telefono: ''
+  const [orderData, setOrdertData] = useState({
+    id: '',
+	numeroDeOrden: '',
+	fechaDeRegistro: '',
+	totalPrecio: 0,
+	totalIva: 0.0,
+	Departamento: '',
+	ciudad: '',
+	barrio: '',
+	direccionDeEntrega: '',
+	cliente: '',
+	empleado:'' ,
+	entregador: '',
+	observacion: '',
   });
 
  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setClientData({ ...Data, [name]: value });
+    setOrdertData({ ...orderData, [name]: value });
   };
 
-  const sendClientData = async () => {
+  const sendOrderData = async () => {
 
-    console.log('data q se despacha al servidor', Data)
+    console.log('data q se despacha al servidor', orderData)
 
     try {
-      const response = await axios.post('http://localhost:3001/employee', Data);
+      const response = await axios.post('http://localhost:3001/order', orderData);
 
       if (response.status === 201) {
-        console.log('Cliente creado exitosamente:', response.data);
+        console.log('Orden creada exitosamente:', response.data);
       }
     } catch (error) {
-      console.error('Error al crear el cliente:', error);
+      console.error('Error al crear la orden:', error);
     }
 
   };
 
   return (
     <div className="container mx-auto px-4 py-4">
-      <h2 className="text-2xl font-semibold mb-4">Crear Empleado</h2>
+      <h2 className="text-2xl font-semibold mb-4">Crear Orden</h2>
       <form>
         <div className="mb-4">
-          <label className="block text-gray-700">Nombre:</label>
+          <label className="block text-gray-700">Numero de orden :</label>
           <input
             type="text"
-            name="nombre"
-            value={Data.nombre}
+            name="numeroDeOrden"
+            value={orderData.numeroDeOrden}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Apellidos:</label>
+          <label className="block text-gray-700">Fecha de registro :</label>
           <input
             type="text"
-            name="apellidos"
-            value={Data.apellidos}
+            name="fechaDeRegistro"
+            value={orderData.fechaDeRegistro}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Cedula: </label>
+          <label className="block text-gray-700">Total precio: </label>
           <input
-            type="text"
-            name="cedula"
-            value={Data.cedula}
+            type="number"
+            name="totalPrecio"
+            value={orderData.totalPrecio}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Direccion: </label>
+          <label className="block text-gray-700">Iva: </label>
           <input
-            type="text"
-            name="direccion"
-            value={Data.direccion}
+            type="number"
+            name="totalIva"
+            value={orderData.totalIva}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
@@ -89,18 +92,18 @@ const Employees = () => {
           <label className="block text-gray-700">Departamento: </label>
           <input
             type="text"
-            name="departamento"
-            value={Data.departamento}
+            name="Departamento"
+            value={orderData.Departamento}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Municipio: </label>
+          <label className="block text-gray-700">Ciudad: </label>
           <input
             type="text"
-            name="municipio"
-            value={Data.municipio}
+            name="ciudad"
+            value={orderData.ciudad}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
@@ -110,45 +113,17 @@ const Employees = () => {
           <input
             type="text"
             name="barrio"
-            value={Data.barrio}
+            value={orderData.barrio}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-            <label className="block text-gray-700">
-                Seleccione tipo de empleado:
-                <div className="mt-2">
-                    <label className="inline-flex items-center">
-                        <input
-                        type="checkbox"
-                        name="tipoEmpleado"
-                        value="empleado"
-                        onChange={handleInputChange}
-                        className="form-checkbox text-blue-500 h-5 w-5"
-                        />
-                        <span className="ml-2 text-gray-800">Empleado</span>
-                    </label>
-                    <label className="inline-flex items-center ml-4">
-                        <input
-                        type="checkbox"
-                        name="tipoEmpleado"
-                        value="administrador"
-                        onChange={handleInputChange}
-                        className="form-checkbox text-blue-500 h-5 w-5"
-                        />
-                        <span className="ml-2 text-gray-800">Administrador</span>
-                    </label>
-                </div>
-            </label>
-        </div>
-
-        <div className="mb-4">
-          <label className="block text-gray-700">salario: </label>
+          <label className="block text-gray-700">Direccion de entrega: </label>
           <input
             type="text"
-            name="salario"
-            value={Data.salario}
+            name="direccionDeEntrega"
+            value={orderData.direccionDeEntrega}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
@@ -158,32 +133,63 @@ const Employees = () => {
           <input
             type="text"
             name="fechaDeNacimiento"
-            value={Data.fechaDeNacimiento}
+            value={orderData.fechaDeNacimiento}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">Telefono: </label>
+          <label className="block text-gray-700">Cliente: </label>
           <input
             type="text"
-            name="telefono"
-            value={Data.telefono}
+            name="cliente"
+            value={orderData.cliente}
             onChange={handleInputChange}
             className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
           />
         </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Empleado: </label>
+          <input
+            type="text"
+            name="empleado"
+            value={orderData.empleado}
+            onChange={handleInputChange}
+            className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Entregador: </label>
+          <input
+            type="text"
+            name="entregador"
+            value={orderData.entregador}
+            onChange={handleInputChange}
+            className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700">Observacion: </label>
+          <input
+            type="text"
+            name="observacion"
+            value={orderData.observacion}
+            onChange={handleInputChange}
+            className="w-full border-gray-300 border rounded py-2 px-3 focus:outline-none focus:border-blue-500"
+          />
+        </div>
+        
         {/* Agrega más campos del formulario aquí */}
         <button
           type="button"
-          onClick={sendClientData}
+          onClick={sendOrderData}
           className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline-blue"
         >
-          Crear Empleado
+          Crear Orden
         </button>
       </form>
     </div>
   );
 };
 
-export default Employees;
+export default Orders

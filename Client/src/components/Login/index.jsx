@@ -1,63 +1,55 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
-import {  getEmployees, getUsers } from '../../redux/actions';
-import { useNavigate }  from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { axiosInstance } from '../../config/axios';
 
 const Login = () => {
   const [inputUsername, setInputUsername] = useState('');
   const [inputPassword, setInputPassword] = useState('');
 
-  const dispatch = useDispatch()
-  const users = useSelector(state=> state.users)
-  const employees = useSelector(state => state.employees)
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  const userLogin = async (user, password) => {
+    try {
+      const params = {
+        usuario: user,
+        contraseña: password
+      };
 
-  useEffect(()=>{
-    dispatch(getUsers())
-  },[dispatch])
-
- 
-
-  const filteredUser = users?.filter(user => user.usuario === inputUsername)
-  console.log('usuario filtrado -> ', filteredUser)
-
-
-  // console.log(`empleado del estado global -> ${typeof employees}`)
-
-  // useEffect(()=>{
-  //   dispatch(getEmployees())
-  // },[dispatch])
-
-
-  // console.log(`empleado del estado global -> ${employees}`)
-  
-
-
-  const handleLogin = () => {
-    console.log(`user: ${inputUsername}, contraseña: ${inputPassword}`)
-    if(filteredUser.length > 0){
-      if (inputUsername === filteredUser[0].usuario && inputPassword === filteredUser[0].contraseña) {
-        alert('Inicio de sesión exitoso')
-        // if(employees)
-        navigate('/home')
-      }else{
-        alert('usuario o contraseña incorrecto')
-      }
-    } else {
-      alert('Inicio de sesión fallido');
+      const response = await axiosInstance.get('/login', { params })
+      const data = response.data;
+      return data;
+    } catch (error) {
+      console.error(error.message);
+      throw error;
     }
-  }
-  
+  };
 
- 
+  const handleLogin = async () => {
+    try {
+      const result = await userLogin(inputUsername, inputPassword);
+
+      if (result === 'empleado') {
+        alert('Inicio de sesión exitoso');
+        navigate('/homeEmployee');
+      } else if (result === 'administrador') {
+        alert('Inicio de sesión exitoso');
+        navigate('/homeAdmin');
+      } else {
+        alert('Usuario o contraseña inválidos');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('Hubo un error al iniciar sesión');
+    }
+  };
 
   return (
     <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-96">
+        <h1 className="text-2xl font-semibold mb-4 text-center">APP COMPANY</h1>
         <h2 className="text-2xl font-semibold mb-4">Iniciar Sesión</h2>
         <div className="mb-4">
-          <label className="block text-gray-700">usuario:</label>
+          <label className="block text-gray-700">Usuario:</label>
           <input
             type="text"
             value={inputUsername}
@@ -83,6 +75,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
-export default Login
+export default Login;

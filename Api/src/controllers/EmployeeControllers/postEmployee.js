@@ -1,8 +1,6 @@
 const { Employee } = require('../../db')
 
 const postEmployee = async (req, res) => {
-    
-    console.log(req.body)
 
     try {
         
