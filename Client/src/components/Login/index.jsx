@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { axiosInstance } from '../../config/axios';
+import { Layout } from '../Layout';
 
-const Login = () => {
-  const [inputUsername, setInputUsername] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
+const Login = ({ setisAuthenticated, setUserType }) => {
+
+
+  const [inputUsername, setInputUsername] = useState('')
+  const [inputPassword, setInputPassword] = useState('')
+  
 
   const navigate = useNavigate();
 
@@ -31,11 +35,19 @@ const Login = () => {
       const result = await userLogin(inputUsername, inputPassword);
 
       if (result === 'empleado') {
-        alert('Inicio de sesión exitoso');
-        navigate('/homeEmployee');
+        setisAuthenticated(true)
+        setUserType('empleado')
+        alert('Inicio de sesión exitoso')
+        navigate('/homeEmployee')
+        return
+        // navigate('/homeEmployee');
       } else if (result === 'administrador') {
-        alert('Inicio de sesión exitoso');
-        navigate('/homeAdmin');
+        setisAuthenticated(true)
+        setUserType('administrador')
+        alert('Inicio de sesión exitoso')
+        navigate('/homeAdmin')
+        return
+        // navigate('/homeAdmin');
       } else {
         alert('Usuario o contraseña inválidos');
       }
@@ -46,7 +58,9 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen flex items-center justify-center">
+    
+    <Layout>
+       <div className="bg-gray-100 min-h-screen flex items-center justify-center">
       <div className="bg-white p-8 rounded shadow-md w-96">
         <h1 className="text-2xl font-semibold mb-4 text-center">APP COMPANY</h1>
         <h2 className="text-2xl font-semibold mb-4">Iniciar Sesión</h2>
@@ -76,7 +90,8 @@ const Login = () => {
         </button>
       </div>
     </div>
+    </Layout>
   );
 };
 
-export default Login;
+export default Login
