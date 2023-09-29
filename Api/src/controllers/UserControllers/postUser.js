@@ -8,6 +8,8 @@ const postUser = async (req, res) => {
     try {
         
         const newUser = await Usuario.create(req.body);
+        //despues de crear el usuario , elimino la contraseña de la respuesta que voy a retornar , por proteccion de datos
+        delete newUser.dataValues.contraseña
         return res.status(201).json(newUser);
 
     } catch (error) {
