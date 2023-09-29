@@ -47,10 +47,8 @@ const Login = ({ setisAuthenticated, setUserType }) => {
         alert('Inicio de sesión exitoso')
         navigate('/homeAdmin')
         return
-        // navigate('/homeAdmin');
-      } else {
-        alert('Usuario o contraseña inválidos');
-      }
+      } 
+      
     } catch (error) {
       console.error(error);
       alert('Hubo un error al iniciar sesión');

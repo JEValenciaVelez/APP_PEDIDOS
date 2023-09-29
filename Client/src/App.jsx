@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { HomeAdmin } from './pages/HomeAdmin';
 import Login from './components/Login';
 import './App.css';
+import { HomeEmployee } from './pages/HomeEmployee';
 
 function App() {
 
@@ -24,8 +25,8 @@ function App() {
             )
           }
         />
-        <Route path="/homeEmployee" element={isAuthenticated ? <Home /> : <Navigate to="/login" replace />} />
-        <Route path="/homeAdmin" element={isAuthenticated && userType === 'administrador' ? <Home /> : <Navigate to="/login" replace />} />
+        <Route path="/homeEmployee" element={isAuthenticated ? <HomeEmployee /> : <Navigate to="/login" replace />} />
+        <Route path="/homeAdmin" element={isAuthenticated && userType === 'administrador' ? <HomeAdmin /> : <Navigate to="/login" replace />} />
         <Route path="/login" element={<Login setisAuthenticated={setisAuthenticated} setUserType={setUserType} />} />
         {/* Agrega más rutas según sea necesario */}
       </Routes>
