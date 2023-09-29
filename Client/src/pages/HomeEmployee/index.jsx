@@ -7,7 +7,7 @@ export const HomeEmployee = () => {
 
     return (
         <Layout>
-          <h1 className="mt-0">HomeAdmin works</h1>
+          <h1 className="mt-0">HomeEmployee works</h1>
           
         </Layout>
     )
