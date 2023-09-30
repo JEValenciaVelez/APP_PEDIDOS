@@ -135,3 +135,6 @@ module.exports = (sequelize) => {
           },
     })
 }
+
+
+// este modelo se llena desde la tabla order, la relacion se establece en un campo del modelo order y alli se envia la data como objeto que llena todos estos campos. hay que establecer la relacion en el archivo db.js donde estan explicitas las relaciones de tablas

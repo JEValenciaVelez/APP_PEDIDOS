@@ -62,11 +62,10 @@ module.exports = (sequelize) => {
     },
 
     tipoEmpleado: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('empleado', 'administrador'), //solo se permiten estos dos valores
       allowNull: false,
       validate: {
-        notEmpty: true, // No debe estar vacío
-        isIn: [['empleado', 'administrador']], // Valores permitidos
+        notEmpty: true,
       },
     },
 

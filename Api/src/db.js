@@ -75,6 +75,7 @@ OrderDetail.belongsTo(Order, {
   as: 'order', // Alias para la relación (puedes elegir cualquier nombre)
 });
 
+
 Usuario.belongsTo(Employee, {
   foreignKey: 'usuario', // Nombre de la columna de clave foránea en Usuario
   targetKey: 'cedula', // Nombre de la columna de destino en Employee
