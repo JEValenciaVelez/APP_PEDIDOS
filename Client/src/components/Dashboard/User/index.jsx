@@ -1,9 +1,8 @@
 // este componente me renderiza las funciones del vendedor de la empresa , funcion de crear cliente , actualizar cliente , tomar pedido , ver direccion del cliente
 
 
-import React from 'react';
-
 function EmployeePanel() {
+
   return (
     <div className="employee-panel bg-gray-200 p-4">
       <h2 className="text-lg font-semibold">Panel de Empleado</h2>
@@ -40,8 +39,13 @@ function EmployeePanel() {
           {/* Aquí puedes listar los empleados entregadores */}
         </select>
       </div>
+     
       <button className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600">
-        Mostrar Checkout
+        Modulo Clientes
+      </button>
+
+      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600">
+        Pedidos
       </button>
       {/* Agregar más botones y funcionalidades según las especificaciones */}
     </div>
