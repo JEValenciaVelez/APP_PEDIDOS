@@ -19,6 +19,7 @@ const getUsers =  async (req, res) => {
                 return res.status(404).send(`No hay usuario con la cédula ${cedula}`);
             }
 
+            
             return res.status(200).json(user)
 
         }else{

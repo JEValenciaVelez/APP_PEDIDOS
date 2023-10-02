@@ -40,7 +40,9 @@ const {
   EmployeeType, 
   Order, 
   OrderDetail, 
-  Usuario,  
+  Usuario,
+  Departamento,
+  Municipio  
 } = sequelize.models;
 // console.log(`employe: ${Employee}, type employe: ${EmployeeType}`)
 
@@ -82,7 +84,15 @@ Usuario.belongsTo(Employee, {
   as: 'employee', // Alias de la relación (opcional)
 });
 
+Departamento.hasMany(Municipio,{
+  foreignKey: 'departamentoId', 
+  as: 'municipios', 
+})
 
+Municipio.belongsTo(Departamento,{
+  foreignKey: 'departamentoId', 
+  as: 'departamentoDetail',
+})
 
 
 // console.log(sequelize.models);
