@@ -4,7 +4,7 @@ import { Layout } from "../../components/Layout"
 
 
 
-export const HomeEmployee = () => {
+const HomeEmployee = () => {
 
 
     return (
@@ -14,3 +14,5 @@ export const HomeEmployee = () => {
         </Layout>
     )
 }
+
+export default HomeEmployee

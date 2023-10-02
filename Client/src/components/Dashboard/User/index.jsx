@@ -3,6 +3,8 @@
 
 function EmployeePanel() {
 
+  
+
   return (
     <div className="employee-panel bg-gray-200 p-4">
       <h2 className="text-lg font-semibold">Panel de Empleado</h2>

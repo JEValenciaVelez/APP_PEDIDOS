@@ -4,7 +4,7 @@ import { Layout } from "../../components/Layout"
 
 
 
-export const HomeAdmin = () => {
+const HomeAdmin = () => {
 
 
     return (
@@ -14,3 +14,5 @@ export const HomeAdmin = () => {
         </Layout>
     )
 }
+
+export default HomeAdmin
