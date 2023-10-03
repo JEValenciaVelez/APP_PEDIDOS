@@ -1,5 +1,6 @@
-import EmployeePanel from "../../components/Dashboard/User"
+
 import { Layout } from "../../components/Layout"
+import EmployeePanel from '../../components/Dashboard/User'
 
 
 
