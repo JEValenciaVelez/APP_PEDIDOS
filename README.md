@@ -1,3 +1,26 @@
+## **📋 PARA COMENZAR...**
+
+1. Deberás forkear este repositorio para tener una copia del mismo en tu cuenta personal de GitHub.
+
+2. Clona el repositorio en tu computadora para comenzar a trabajar. Este repositorio contiene un **`BoilerPlate`** con la estructura general del proyecto, tanto del servidor como del cliente. El boilerplate cuenta con dos carpetas: **`api`** y **`client`**. En estas carpetas estará el código del back-end y el front-end respectivamente.
+
+3. En la carpeta **`api`** deberás crear un archivo llamado: **`.env`** que tenga la siguiente forma:
+
+   ```env
+       DB_USER=usuariodepostgres
+       DB_PASSWORD=passwordDePostgres
+       DB_HOST=localhost
+   ```
+
+4. Reemplazar **`usuariodepostgres`** y **`passwordDePostgres`** con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
+
+5. Adicionalmente será necesario que crees, **desde psql (shell o PGAdmin)**, una base de datos llamada **`orders_admin`**. Si no realizas este paso de manera manual no podrás avanzar con el proyecto.
+
+<br />
+
+---
+
+
 ## **📁 INSTRUCCIONES**
 
 </div>
