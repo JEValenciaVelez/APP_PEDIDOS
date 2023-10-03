@@ -45,9 +45,9 @@ function LandingPage() {
       </section>
 
       {/* Sección Login */}
-      <section id="login" className="py-12 bg-gray-100">
+      <section id="servicios" className="py-12 bg-gray-100">
         <div className="container mx-auto text-center">
-          <h2 className="text-3xl font-semibold">Login</h2>
+          <h2 className="text-3xl font-semibold">Servicios</h2>
           {/* Agregar aquí un formulario de inicio de sesión o enlace a la página de inicio de sesión */}
         </div>
       </section>
