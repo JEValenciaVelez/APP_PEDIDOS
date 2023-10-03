@@ -10,25 +10,32 @@ const deleteClient = async (req, res) => {
             return res.status(400).send('Debe proporcionar la cédula del cliente a eliminar');
         }
 
-        // Buscar clientes por su cédula
-        const clientToDelete = await Client.findAll({
+        // Buscar cliente por su cédula
+        const clientToDelete = await Client.findOne({
             where: {
                 cedula
             }
         });
 
-        if (clientToDelete.length === 0) {
-            return res.status(404).send('No se encontraron clientes con la cédula proporcionada');
+        if (!clientToDelete) {
+            return res.status(404).send('No se encontró un cliente con la cédula proporcionada');
         }
 
-        // Eliminar el cliente
-        await Client.destroy({
-            where: {
-                cedula
-            }
-        });
+        if (!clientToDelete.activo) {
+            return res.status(200).send('Cliente ya inactivado anteriormente');
+        }
 
-        return res.status(200).json({ message: 'Cliente eliminado con éxito' });
+        // Actualizar el cliente para inactivarlo
+        await Client.update(
+            { activo: false },
+            {
+                where: {
+                    cedula
+                }
+            }
+        );
+
+        return res.status(200).json({ message: 'Cliente inactivado con éxito' });
 
     } catch (error) {
         console.error(error);
@@ -36,4 +43,4 @@ const deleteClient = async (req, res) => {
     }
 };
 
-module.exports = deleteClient
+module.exports = deleteClient;
