@@ -231,21 +231,96 @@ El servidor cuenta con las siguientes rutas :
 <br />
 
 
-se repiten las mismas funcionalidades para las rutas:
+#### **📍 GET | /order**
+
+-  Obtiene un arreglo de objetos, donde cada objeto es un pedido con su información.
+
+
+#### **📍 GET | /order?numeroDeOrden="..."**
+
+-  Esta ruta debe obtener un pedido con el numero de orden recibida por query.
+-  Debe poder buscarlo independientemente de mayúsculas o minúsculas.
+-  Si no existe el pedido, debe mostrar un mensaje adecuado.
+
+
+#### **📍 POST | /order**
+
+-  Esta ruta recibirá todos los datos necesarios para crear un pedido
+-  Toda la información debe ser recibida por body.
+-  Debe crear un pedido en la base de datos
+
+#### **📍 PUT | /order**
+
+-  actualiza un pedido enviando el numero de orden por body , y los demas campos a actualizar
 
 <br />
 
-#### **📍/Client**
-#### **📍/order**
-#### **📍/product**
-#### **📍/departament**
-#### **📍/municipios**
+#### **📍 DELETE | /order**
 
+-  elimina un pedido , proporcionando el numero de orden por body
 
 <br />
 
-#### **📍 DELETE | /employee**
 
+#### **📍 GET | /departament**
+
+-  Obtiene un arreglo de objetos, donde cada objeto es un departamento con su información.
+
+
+#### **📍 GET | /departament?nombre="..."**
+
+-  Esta ruta debe obtener un departament con el nombre recibido por query.
+-  Debe poder buscarlo independientemente de mayúsculas o minúsculas.
+-  Si no existe el departamento, debe mostrar un mensaje adecuado.
+
+
+#### **📍 POST | /departament**
+
+-  Esta ruta recibirá todos los datos necesarios para crear un departamento
+-  Toda la información debe ser recibida por body.
+-  Debe crear un departamento en la base de datos
+
+
+
+#### **📍 DELETE | /departament**
+
+-  Elimina un departamento de la base de datos , proporcionando el nombre por body
+
+<br />
+
+
+#### **📍 GET | /municipio**
+
+-  Obtiene un arreglo de objetos, donde cada objeto es un municipio con su información.
+
+
+#### **📍 GET | /municipio?nombre="..."**
+
+-  Esta ruta debe obtener un municipio con el nombre recibida por query.
+-  Debe poder buscarlo independientemente de mayúsculas o minúsculas.
+-  Si no existe el municipio, debe mostrar un mensaje adecuado.
+
+
+#### **📍 POST | /municipio**
+
+-  Esta ruta recibirá todos los datos necesarios para crear un municipio
+-  Toda la información debe ser recibida por body.
+-  Debe crear un municipio en la base de datos
+
+
+#### **📍 DELETE | /municipio**
+
+-  Elimina un municipio , proporcionando el nombre por body
+
+<br />
+
+
+#### **📍 POST | /login**
+
+-  Esta ruta recibirá todos los datos necesarios para autentificar el usuario 
+-  Se envian el usuario y la contraseña por body.
+
+<br />
 
 ---
 
