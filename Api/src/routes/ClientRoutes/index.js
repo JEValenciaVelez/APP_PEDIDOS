@@ -7,6 +7,7 @@ const deleteClient = require('../../controllers/ClientControllers/deleteClient')
 const updateClient = require('../../controllers/ClientControllers/updateClient')
 
 
+
 clientRoutes.post('/', postClient)
 clientRoutes.get('/', getClients)
 clientRoutes.delete('/', deleteClient)
