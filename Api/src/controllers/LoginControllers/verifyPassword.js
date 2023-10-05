@@ -1,10 +1,14 @@
 //funcion que me compara la contraseña con la contraseña enciptada en la base de datos
-
+require('dotenv').config()
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const { JWT_SECRET } = process.env
 
 const { Usuario } = require('../../db')
 const { Employee } = require('../../db')
 
+
+const secret = JWT_SECRET
 
 const verifyPassword =  async (req, res) => {
 
@@ -24,8 +28,6 @@ const verifyPassword =  async (req, res) => {
             where : { cedula: usuario }
         })
 
-        console.log(`usuario encontrado en bd -> ${userFound.contraseña}`)
-        console.log(`empleado encontrado en bd -> ${employeeFound.cedula}`)
 
         if(!userFound) {
             return res.status(404).send('No se encontro registro de usuario en base de datos')
@@ -34,11 +36,18 @@ const verifyPassword =  async (req, res) => {
         const isMatch = await bcrypt.compare(contraseña, userFound.contraseña)
         console.log(`isMatch -> ${isMatch}`)
 
+        const payload = {
+            sub: usuario,
+            role: employeeFound.tipoEmpleado
+        }
+
         if(isMatch){
             if(employeeFound.tipoEmpleado === "empleado"){
-                return res.status(200).send("empleado")
+                const token = jwt.sign(payload, secret)
+                return res.status(200).json({employeeFound,token})
             }else if(employeeFound.tipoEmpleado === "administrador"){
-                return res.status(200).send("administrador")
+                const token = jwt.sign(payload, secret)
+                return res.status(200).json({employeeFound,token})
             }
 
         }else {
