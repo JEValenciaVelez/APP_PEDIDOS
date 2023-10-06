@@ -9,6 +9,7 @@ const routes = require('./routes/index');
 
 const app = express();
 
+//configuracion de middlewares
 app.use(express.json())
 app.use(morgan('dev'))
 app.use(cors())
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
 
 app.use('/', routes);
 
-// Error catching endware.
+// middleware de manejo de errores.
 app.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
