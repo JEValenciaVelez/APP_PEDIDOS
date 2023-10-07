@@ -34,4 +34,18 @@ function verifyToken (req, res, next) {
     }
 }
 
-module.exports = { checkApiKey, verifyToken }
+//middleware de verificacion de rol administrador en la ruta
+function checkAdminRole (req, resp, next) {
+    const { payload } = req.body
+    console.log(payload)
+
+    if(payload.role === 'administrador'){
+        next()
+    }else{
+        next(boom.unauthorized())
+    }
+}
+
+
+
+module.exports = { checkApiKey, verifyToken, checkAdminRole }
