@@ -7,9 +7,9 @@ const path = require('path');
 
 const notification = async (userData) => {
   const transporter = nodemailer.createTransport({
-    host: 'smtp-mail.outlook.com', // Servidor SMTP de Hotmail/Outlook
-    port: 587, // Puerto de Hotmail/Outlook para TLS
-    secure: false, // false para TLS; true para SSL 
+    host: 'smtp.gmail.com', // Servidor SMTP de gmail
+    port: 465, // Puerto de gmail para ssl
+    secure: true, // false para TLS; true para SSL 
     auth: {
       user: USER,
       pass: PASS,
@@ -39,13 +39,13 @@ const notification = async (userData) => {
   }
 };
 
-const userData = {
-  to: 'juancho50301@gmail.com',
-  subject: 'envío de notificación nodemailer',
-  text: 'Gracias por usar nodemailer.',
-  template: 'notification.ejs', // Asegúrate de que el archivo existe en la carpeta 'templates'
-};
+// const userData = {
+//   to: 'juancho50301@hotmail.com',
+//   subject: 'envío de notificación nodemailer',
+//   text: 'Gracias por usar nodemailer.',
+//   template: 'notification.ejs', // Asegúrate de que el archivo existe en la carpeta 'templates'
+// };
 
-notification(userData);
+// notification(userData);
 
 module.exports = notification
