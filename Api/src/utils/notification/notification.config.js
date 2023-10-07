@@ -3,10 +3,13 @@ require('dotenv').config();
 const { USER, PASS } = process.env;
 const ejs = require('ejs');
 const path = require('path');
+//console.log('del .env -> ',USER,PASS)
 
 const notification = async (userData) => {
   const transporter = nodemailer.createTransport({
-    service: 'Gmail', 
+    host: 'smtp-mail.outlook.com', // Servidor SMTP de Hotmail/Outlook
+    port: 587, // Puerto de Hotmail/Outlook para TLS
+    secure: false, // false para TLS; true para SSL 
     auth: {
       user: USER,
       pass: PASS,
