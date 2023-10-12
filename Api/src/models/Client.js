@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define("client", {
     
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     nombre: {

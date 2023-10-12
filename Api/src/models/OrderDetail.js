@@ -13,12 +13,10 @@ module.exports = (sequelize) => {
         
           pedidoId: {
             type: DataTypes.UUID, // Asegúrate de que el tipo de datos coincida con el de la clave primaria de "order"
-            allowNull: false,
-            validate: {
-              notNull: {
-                args: true,
-                msg: 'El campo pedidoId no puede ser nulo.',
-              },
+            defaultValue: DataTypes.UUIDV4,
+            unique: {
+              name: 'pedidoId',
+              msg: 'id ya está en uso', // Mensaje personalizado para la restricción unique
             },
           },
           

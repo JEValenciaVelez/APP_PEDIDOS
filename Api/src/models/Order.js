@@ -12,8 +12,11 @@ module.exports = (sequelize) => {
 
     numeroDeOrden: {
         type: DataTypes.UUID, 
-        defaultValue: DataTypes.UUIDV1,
-        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+        unique: {
+          name: 'numeroDeOrden',
+          msg: 'La numero ya está en uso', // Mensaje personalizado para la restricción unique
+        },
         // validate: {
         //   notNull: {
         //     args: true,

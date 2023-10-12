@@ -1,37 +1,37 @@
-require('dotenv').config();
-const { Sequelize } = require('sequelize');
-const fs = require('fs');
-const path = require('path');
-const {DB_USER, DB_PASSWORD, DB_HOST} = process.env;
+require('dotenv').config()
+const { Sequelize } = require('sequelize')
+const fs = require('fs')
+const path = require('path')
+const {DB_USER, DB_PASSWORD, DB_HOST} = process.env
 
 
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/orders_admin`, {
   logging: false, // set to console.log to see the raw SQL queries
   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+})
 
 // const sequelize = new Sequelize(DB_DEPLOY, {
 //   logging: false, // set to console.log to see the raw SQL queries
 //   native: false, // lets Sequelize know we can use pg-native for ~30% more speed
 // });
 
-const basename = path.basename(__filename);
+const basename = path.basename(__filename)
 
-const modelDefiners = [];
+const modelDefiners = []
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
   .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, '/models', file)));
+    modelDefiners.push(require(path.join(__dirname, '/models', file)))
   });
 
 // Injectamos la conexion (sequelize) a todos los modelos
-modelDefiners.forEach(model => model(sequelize));
+modelDefiners.forEach(model => model(sequelize))
 // Capitalizamos los nombres de los modelos ie: product => Product
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
-sequelize.models = Object.fromEntries(capsEntries);
+let entries = Object.entries(sequelize.models)
+let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]])
+sequelize.models = Object.fromEntries(capsEntries)
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
@@ -43,7 +43,7 @@ const {
   Usuario,
   Departamento,
   Municipio  
-} = sequelize.models;
+} = sequelize.models
 // console.log(`employe: ${Employee}, type employe: ${EmployeeType}`)
 
 // Aca vendrian las relaciones
@@ -51,49 +51,52 @@ const {
 
 // Define las relaciones
 
-Employee.belongsToMany(EmployeeType, {
-  through: 'EmployeeEmployeeType', // Nombre de la tabla intermedia
-  foreignKey: 'employeeId', // Clave foránea que hace referencia al ID de Employee
-  otherKey: 'employeeTypeId', // Clave foránea que hace referencia al ID de EmployeeType
-});
-
-// En el modelo "EmployeeType"
-EmployeeType.belongsToMany(Employee, {
-  through: 'EmployeeEmployeeType', // Nombre de la tabla intermedia
-  foreignKey: 'employeeTypeId', // Clave foránea que hace referencia al ID de EmployeeType
-  otherKey: 'employeeId', // Clave foránea que hace referencia al ID de Employee
-});
+// En el modelo Employee
+Employee.belongsTo(EmployeeType, {
+  foreignKey: 'descripcion', // Clave foránea que se relaciona con la columna "descripcion" en "EmployeeType"
+  as: 'employeeType', // Alias para acceder a la relación
+  onDelete: 'SET NULL', // Acción en cascada al eliminar
+  onUpdate: 'CASCADE', // Acción en cascada al actualizar
+})
 
 
-// En el modelo "order"
-Order.hasMany(OrderDetail, {
-  foreignKey: 'pedidoId', // Nombre de la columna de clave foránea en "orderDetail"
-  as: 'orderDetails', // Alias para la relación (puedes elegir cualquier nombre)
-});
+// relacion modelo "EmployeeType" con "Employee" (uno a muchos)
+EmployeeType.hasMany(Employee, {
+  foreignKey: 'descripcion', // Clave foránea que se relaciona con la columna "descripcion" en "Employee"
+  as: 'employees', // Alias para acceder a la relación
+})
 
-// En el modelo "orderDetail"
-OrderDetail.belongsTo(Order, {
-  foreignKey: 'pedidoId', // Nombre de la columna de clave foránea en "orderDetail"
-  as: 'order', // Alias para la relación (puedes elegir cualquier nombre)
-});
-
-
+//relacion modelo Usuario - Employee(uno a uno)
 Usuario.belongsTo(Employee, {
   foreignKey: 'usuario', // Nombre de la columna de clave foránea en Usuario
   targetKey: 'cedula', // Nombre de la columna de destino en Employee
   as: 'employee', // Alias de la relación (opcional)
+})
+
+
+// En el modelo "order"
+Order.belongsTo(OrderDetail, {
+  foreignKey: 'pedidoId', // Clave foránea en el modelo "Order" que se relaciona con "pedidoId" en el modelo "OrderDetail"
+  targetKey: 'pedidoId', // Clave objetivo en el modelo "OrderDetail"
+  as: 'orderDetail', // Alias para acceder a la relación
 });
 
-Departamento.hasMany(Municipio,{
-  foreignKey: 'departamentoId', 
-  as: 'municipios', 
+
+
+
+// En el modelo "Departamento"
+Departamento.hasMany(Municipio, {
+  foreignKey: 'departamentoId', // Clave foránea en la tabla "Municipio" que se relaciona con la columna "id" en "Departamento"
+  as: 'municipios', // Alias para acceder a la relación
 })
 
-Municipio.belongsTo(Departamento,{
-  foreignKey: 'departamentoId', 
-  as: 'departamentoDetail',
-})
 
+
+// En el modelo "Municipio"
+Municipio.belongsTo(Departamento, {
+  foreignKey: 'departamentoId', // Clave foránea en la tabla "Municipio" que se relaciona con la columna "id" en "Departamento"
+  as: 'departamentoDetail', // Alias para acceder a la relación
+})
 
 // console.log(sequelize.models);
 
