@@ -7,6 +7,7 @@ function LandingPage() {
 
     <div>
       {/* Barra de navegación */}
+      
       <nav className="bg-blue-500 p-4">
         <div className="container mx-auto">
           <div className="text-white text-2xl font-semibold">
@@ -27,6 +28,7 @@ function LandingPage() {
       </nav>
 
       {/* Sección de Inicio */}
+      
       <section id="inicio" className="py-12 bg-gray-100">
         <div className="container mx-auto text-center">
           <h2 className="text-3xl font-semibold">Bienvenido a Pedidos & Entregas S.A</h2>

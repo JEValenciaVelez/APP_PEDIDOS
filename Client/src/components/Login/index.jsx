@@ -13,6 +13,7 @@ const Login = ({ setisAuthenticated, setUserType }) => {
   const navigate = useNavigate();
 
   const userLogin = async (user, password) => {
+
     try {
 
       const reqBody = {
@@ -23,6 +24,7 @@ const Login = ({ setisAuthenticated, setUserType }) => {
 
       const response = await axiosInstance.post('/login', reqBody)
       const data = response.data
+      //console.log('data del servidor -> ', data)
       return data
     } catch (error) {
       console.error(error.message)
@@ -34,14 +36,14 @@ const Login = ({ setisAuthenticated, setUserType }) => {
     try {
       const result = await userLogin(inputUsername, inputPassword);
 
-      if (result === 'empleado') {
+      if (result.payload.role === 'empleado') {
         setisAuthenticated(true)
         setUserType('empleado')
         alert('Inicio de sesión exitoso')
         navigate('/homeEmployee')
         return
         // navigate('/homeEmployee');
-      } else if (result === 'administrador') {
+      } else if (result.payload.role === 'administrador') {
         setisAuthenticated(true)
         setUserType('administrador')
         alert('Inicio de sesión exitoso')

@@ -62,12 +62,14 @@ module.exports = (sequelize) => {
     },
 
     tipoEmpleado: {
-      type: DataTypes.ENUM('empleado', 'administrador'), //solo se permiten estos dos valores
+      type: DataTypes.ENUM('empleado', 'administrador'),
       allowNull: false,
       validate: {
         notEmpty: true,
       },
     },
+    
+    
 
     salario: {
       type: DataTypes.FLOAT,
