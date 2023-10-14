@@ -1,4 +1,4 @@
-//modulo de verificacion del token
+//modulo se muestra como se  verifica el token
 
 const jwt = require('jsonwebtoken')
 

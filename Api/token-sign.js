@@ -1,4 +1,4 @@
-//en este modulo firmo el token
+//en este modulo muestra como se firma el token
 // require('dotenv').config()
 // const { SECRET } = process.env
 const jwt = require('jsonwebtoken')
