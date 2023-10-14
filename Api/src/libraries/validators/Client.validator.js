@@ -1,7 +1,5 @@
 const { body } = require('express-validator');
-const validateISODate = require('../../middlewares/validator.date');
-const validateCustomDate = require('../../middlewares/validator.date');
-const validateISODateWithMilliseconds = require('../../middlewares/validator.date');
+
 
 const validatePostClient = [
 
@@ -10,7 +8,7 @@ const validatePostClient = [
     .isString()
     .customSanitizer(value => value.toLowerCase()) // Convierte a minúsculas
     .notEmpty()
-    .withMessage('Identification number cannot be empty'),
+    .withMessage('campo nombre no puede estar vacio'),
 
   body('apellidos')
     .escape()
@@ -100,38 +98,69 @@ const validatePostClient = [
 ];
 
 const validatePutClient = [
-	body('identification')
+
+	body('nombre')
 		.escape()
 		.notEmpty()
-		.withMessage('Must provide an identification number')
+		.withMessage('Debe proveer un nombre')
 		.isString()
+    .customSanitizer(value => value.toLowerCase()) // Convierte a minúsculas
+		.withMessage('cedula debe ser string'),
+
+	body('apellidos')
+		.escape()
+		.isString()
+    .customSanitizer(value => value.toLowerCase()) // Convierte a minúsculas
+		.isLength({ max: 50 })
+		.withMessage('Nombre maxiomo de 50 caracteres'),
+
+	body('cedula')
+		.escape()
+		.isString()
+		.isLength({ max: 10 })
+		.withMessage('maximo de 10 caracteres'),
+
+  body('direccion')
+		.escape()
+		.notEmpty()
+		.withMessage('Debe proveer una direccion')
+		.isString()
+		.withMessage('Direccion debe ser un string'),
+
+  body('departamento')
+		.escape()
+		.notEmpty()
+		.withMessage('Debe proveer un departamento')
+		.isString()
+    .customSanitizer(value => value.toLowerCase()) // Convierte a minúsculas
 		.withMessage('Identification must be a string'),
-	body('first_name')
+
+  body('municipio')
 		.escape()
+		.notEmpty()
+		.withMessage('Debe proveer un municipio')
 		.isString()
-		.isLength({ max: 50 })
-		.withMessage('Name length must be lower than 50 characters'),
-	body('last_name')
+    .customSanitizer(value => value.toLowerCase()) // Convierte a minúsculas
+		.withMessage('Identification must be a string'),
+
+  body('barrio')
 		.escape()
+		.notEmpty()
+		.withMessage('debe proveer un barrio')
 		.isString()
-		.isLength({ max: 50 })
-		.withMessage('Last name length must be lower than 50 characters'),
-	body('email').normalizeEmail().escape(),
-	body('phone').escape(),
-	body('check_in_date')
-		.escape()
-		.custom((value, { req }) => {
-			const checkInDate = new Date(value);
-			const checkOutDate = new Date(req.body.check_out_date);
-			if (checkOutDate <= checkInDate) {
-				throw new Error(
-					'The check-out date must be after the check-in date.'
-				);
-			}
-			return true;
-		}),
-	body('check_out_date').escape(),
-	body('special_requirements').escape(),
+    .customSanitizer(value => value.toLowerCase()) // Convierte a minúsculas
+		.withMessage('Identification must be a string'),
+
+  
+  body('telefono')
+  .escape()
+  .notEmpty()
+  .withMessage('Debe proveer un número de teléfono')
+  .isString()
+  .isLength({ min: 7, max: 15 })
+  .withMessage('El número de teléfono debe tener entre 7 y 15 caracteres')
+  .customSanitizer(value => value.toLowerCase())
+
 ];
 
 module.exports = {
