@@ -58,7 +58,7 @@ module.exports = (sequelize) => {
     },
     fechaDeNacimiento: {
         type: DataTypes.DATE,
-        allowNull: false,
+        allowNull: true,
         defaultValue: DataTypes.NOW, // Valor predeterminado: fecha actual
         validate: {
         isDate: true, // Validar que la fecha sea una fecha válida
