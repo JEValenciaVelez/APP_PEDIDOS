@@ -7,9 +7,22 @@
 3. En la carpeta **`api`** deberás crear un archivo llamado: **`.env`** que tenga la siguiente forma:
 
    ```env
-       DB_USER=usuariodepostgres
-       DB_PASSWORD=passwordDePostgres
-       DB_HOST=localhost
+      # para base de datos
+        DB_USER=postgres
+        DB_PASSWORD=yourpassword
+        DB_HOST=localhost:5432
+
+        # puerto del servidor
+        DB_PORT=yourport
+
+        # para autentificacion de usuarios jwt
+        API_KEY=yourapikey
+        JWT_SECRET=yoursecret
+
+        # credenciales para el servicio de nodemailer
+        USER=youremail
+        PASS=yourpasswordmailforapi
+
    ```
 
 4. Reemplazar **`usuariodepostgres`** y **`passwordDePostgres`** con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
